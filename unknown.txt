@@ -1,0 +1,150 @@
+                required
+              />
+            )}
+          </div>
+
+          {/* Category Selection with Compact Green Tags */}
+          <div className="bg-gradient-to-r from-dark-primary/20 to-dark-secondary/20 rounded-2xl border-3 border-gray-500 p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <TagIcon size={24} className="text-dark-primary" />
+              <h3 className="text-lg font-bold text-dark-text">
+                🏷️ 文章分类
+              </h3>
+            </div>
+            <p className="text-dark-text-secondary font-medium mb-4">
+              选择适合的分类标签，帮助其他用户更好地发现您的内容
+            </p>
+            
+            <div className="flex flex-wrap gap-3">
+              {AVAILABLE_CATEGORIES.map((category) => (
+                <button
+                  key={category.value}
+                  type="button"
+                  onClick={() => handleCategoryToggle(category.value)}
+                  className={`inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    selectedCategories.includes(category.value)
+                      ? 'bg-green-500 text-white border-2 border-green-400 shadow-lg'
+                      : 'bg-dark-surface text-dark-text border-2 border-gray-500 hover:border-green-400 hover:text-green-400'
+                  }`}
+                >
+                  <span className="mr-2">{category.emoji}</span>
+                  <span>{category.label}</span>
+                  {selectedCategories.includes(category.value) && (
+                    <span className="ml-2 text-xs">✓</span>
+                  )}
+                </button>
+              ))}
+            </div>
+            
+            {selectedCategories.length > 0 && (
+              <div className="mt-4 p-3 bg-dark-surface/50 rounded-xl border-2 border-gray-500">
+                <div className="flex items-center space-x-2">
+                  <span className="text-green-400 font-bold text-sm">已选择分类：</span>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedCategories.map((category) => {
+                      const categoryInfo = AVAILABLE_CATEGORIES.find(c => c.value === category);
+                      return (
+                        <span
+                          key={category}
+                          className="bg-green-500/20 text-green-400 px-2 py-1 rounded-lg text-sm font-medium border border-green-400/30"
+                        >
+                          {categoryInfo?.emoji} {categoryInfo?.label}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Community Review Toggle */}
+          <div className="bg-gradient-to-r from-dark-primary/20 to-dark-secondary/20 rounded-2xl border-3 border-gray-500 p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-dark-text mb-2 flex items-center">
+                  🔄 发布选项
+                </h3>
+                <p className="text-dark-text-secondary font-medium">
+                  {submittedForReview 
+                    ? '📋 提交审核并发布到社区 - 文章将进入超级管理员审核队列，审核通过后在社区主页展示'
+                    : '🔒 私人文章 - 文章仅您本人可见，不会在社区展示'
+                  }
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleToggleReview}
+                className={`flex items-center space-x-3 px-6 py-4 rounded-2xl border-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 ${
+                  submittedForReview
+                    ? 'bg-dark-warning/20 border-dark-warning text-dark-warning'
+                    : 'bg-dark-success/20 border-dark-success text-dark-success'
+                }`}
+              >
+                {submittedForReview ? (
+                  <>
+                    <ToggleRightIcon size={24} />
+                    <span className="font-bold">提交社区审核</span>
+                  </>
+                ) : (
+                  <>
+                    <ToggleLeftIcon size={24} />
+                    <span className="font-bold">私人文章</span>
+                  </>
+                )}
+              </button>
+            </div>
+            
+            <div className="mt-4 p-4 bg-dark-surface/50 rounded-xl border-2 border-gray-500">
+              <div className="flex items-start space-x-3">
+                <span className="text-2xl">💡</span>
+                <div>
+                  <p className="text-dark-text font-medium text-sm">
+                    <strong>预览模式优化：</strong>
+                  </p>
+                  <ul className="text-dark-text-secondary text-sm mt-1 space-y-1">
+                    <li>• <strong>隐藏标题预览：</strong>预览模式下隐藏"预览标题"部分，只显示正文内容的渲染效果</li>
+                    <li>• <strong>代码块优化：</strong>多行代码块（如C++示例）在预览和文章展示时保持多行显示，保留所有换行和缩进</li>
+                    <li>• <strong>模式切换：</strong>点击眼球按钮进入预览模式，点击编辑按钮返回编辑模式</li>
+                    <li>• <strong>空间高效：</strong>预览模式替换编辑界面，不占用额外空间</li>
+                    <li>• <strong>内容专注：</strong>预览模式专注于正文内容的格式化效果展示</li>
+                    <li>• <strong>工具栏：</strong>编辑模式下可使用工具栏按钮快速插入 Markdown 格式</li>
+                    <li>• <strong>快捷键：</strong>使用 Ctrl+B（粗体）、Ctrl+I（斜体）等快捷键</li>
+                    <li>• <strong>即时切换：</strong>随时在编辑和预览模式间切换查看效果</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end space-x-4 pt-6">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-8 py-3 border-3 border-gray-500 text-dark-text rounded-2xl hover:bg-dark-hover transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              取消
+            </button>
+            <button
+              type="submit"
+              disabled={isLoading || !title.trim() || !content.trim()}
+              className="px-8 py-3 bg-gradient-to-r from-dark-secondary to-dark-primary hover:from-dark-secondary/80 hover:to-dark-primary/80 text-white rounded-2xl font-bold transition-all duration-300 disabled:opacity-50 shadow-lg hover:shadow-xl hover:scale-105 disabled:transform-none flex items-center space-x-2"
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  <span>保存中...</span>
+                </>
+              ) : (
+                <>
+                  {submittedForReview ? '📋' : '🔒'}
+                  <span>{isEditing ? '✅ 更新' : (submittedForReview ? '提交审核' : '保存私人文章')}</span>
+                </>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}

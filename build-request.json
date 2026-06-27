@@ -1,0 +1,69 @@
+{
+  "kind": "build_request",
+  "title": "Fix multi-line Markdown code block editing and rendering in articles",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Ensure Markdown fenced code blocks (triple backticks) render as true multi-line code blocks (preserve newlines and indentation) in both the Article reader page and the Editor preview, and are not collapsed into a single line.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "帮我看看写文章时候我用到的代码块那地方，没办法代码块整个代码，只能一行，显示后看着很不舒服"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Given an article containing a fenced code block with multiple lines, the ArticleReader page displays it over multiple lines with preserved indentation.",
+        "Given the same content in the editor, MarkdownPreview displays the code block over multiple lines with preserved indentation.",
+        "Long lines inside code blocks do not break the layout (either horizontal scroll works or wrapping is applied consistently), and line breaks are never removed."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Improve the article writing experience so users can insert a multi-line fenced code block from the editor toolbar (in addition to inline code), without having to manually type triple backticks.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "没办法代码块整个代码，只能一行"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The editor toolbar includes a dedicated action to insert a fenced code block template using triple backticks, placing the cursor inside the block after insertion.",
+        "The existing inline code action remains available and unchanged in behavior."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Harden Markdown code block parsing so fenced code blocks are recognized reliably (including Windows newlines and optional language specifiers like ```js) and still render correctly even if the final closing backticks are missing (fail gracefully).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Content with CRLF (\\r\\n) newlines renders fenced code blocks correctly.",
+        "A fence like ```language is treated as a code block start and does not appear in the output.",
+        "If the content ends while still inside a code block, the preview/reader still renders the collected code content in a code block rather than collapsing it into normal text."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything in frontend/src/components/ui (compose instead).",
+    "Keep all changes within the existing React + TypeScript + Tailwind stack; do not introduce new frameworks or external services."
+  ],
+  "nonGoals": [
+    "Add syntax highlighting, language detection, or a full CommonMark-compliant Markdown engine.",
+    "Backend schema or stored article content migrations."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

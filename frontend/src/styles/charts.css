@@ -1,0 +1,57 @@
+/* Chart and data visualization specific styles */
+@layer utilities {
+  /* Chart container styles */
+  .mobile-chart-container {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .mobile-chart-canvas {
+    min-width: 320px !important;
+    width: 100% !important;
+    height: 300px !important;
+  }
+
+  /* Chart responsive adjustments */
+  @media (max-width: 640px) {
+    .chart-container {
+      padding: 0.5rem;
+    }
+
+    .chart-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .chart-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .price-display {
+      font-size: 1.25rem;
+    }
+
+    .price-change {
+      font-size: 0.875rem;
+    }
+  }
+
+  /* Chart status indicators */
+  .chart-status-cached {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+    border-color: #10b981;
+  }
+
+  .chart-status-refreshing {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+    border-color: #f59e0b;
+  }
+
+  .chart-status-error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+    border-color: #ef4444;
+  }
+}

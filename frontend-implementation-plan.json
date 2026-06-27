@@ -1,0 +1,74 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix multi-line Markdown fenced code blocks in article reader and editor",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Render fenced Markdown code blocks as true multi-line blocks (preserve newlines/indentation) in ArticleReader and Editor preview without collapsing into one line or breaking layout.",
+      "acceptanceCriteria": [
+        "Given an article containing a fenced code block with multiple lines, the ArticleReader page displays it over multiple lines with preserved indentation.",
+        "Given the same content in the editor, MarkdownPreview displays the code block over multiple lines with preserved indentation.",
+        "Long lines inside code blocks do not break the layout (either horizontal scroll works or wrapping is applied consistently), and line breaks are never removed."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/markdown.tsx",
+          "operation": "modify",
+          "description": "Adjust fenced code block rendering output to consistently preserve multi-line formatting and indentation (pre/code structure + whitespace handling) so the same renderer behaves correctly in both the article reader and editor preview."
+        },
+        {
+          "path": "frontend/src/styles/markdown.css",
+          "operation": "modify",
+          "description": "Ensure rendered fenced code blocks keep newlines and indentation and handle long lines without layout breakage (e.g., stable overflow-x behavior and max-width constraints) for .markdown-rendered pre/code."
+        },
+        {
+          "path": "frontend/src/components/ArticleReader.tsx",
+          "operation": "modify",
+          "description": "Verify the article reader uses the shared markdown renderer in a way that preserves code block whitespace and scrolling (no wrapper classes that collapse whitespace), keeping rendering consistent with preview."
+        },
+        {
+          "path": "frontend/src/components/editor/MarkdownPreview.tsx",
+          "operation": "modify",
+          "description": "Verify the preview container and wrappers do not override code block whitespace/overflow behavior, keeping multi-line fenced code blocks readable and consistent with the reader."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add an editor toolbar action to insert a multi-line fenced code block template and place the cursor inside it, while keeping the inline code action unchanged.",
+      "acceptanceCriteria": [
+        "The editor toolbar includes a dedicated action to insert a fenced code block template using triple backticks, placing the cursor inside the block after insertion.",
+        "The existing inline code action remains available and unchanged in behavior."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/editor/MarkdownToolbar.tsx",
+          "operation": "modify",
+          "description": "Add a dedicated toolbar button for inserting a fenced code block template (triple backticks, optional language placeholder if desired) without altering the existing inline code button behavior."
+        },
+        {
+          "path": "frontend/src/components/ArticleEditor.tsx",
+          "operation": "modify",
+          "description": "Extend the editor insertion logic to support a fenced code block insertion action from the toolbar, ensuring the cursor/selection is positioned inside the inserted block after insertion."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Harden fenced code block parsing for CRLF newlines, optional language specifiers, and graceful handling of missing closing fences.",
+      "acceptanceCriteria": [
+        "Content with CRLF (\\r\\n) newlines renders fenced code blocks correctly.",
+        "A fence like ```language is treated as a code block start and does not appear in the output.",
+        "If the content ends while still inside a code block, the preview/reader still renders the collected code content in a code block rather than collapsing it into normal text."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/markdown.tsx",
+          "operation": "modify",
+          "description": "Update the markdown parsing logic to normalize CRLF to LF, recognize fenced code blocks with optional language specifiers (e.g., ```js), tolerate leading whitespace before fences, and flush an unterminated code block at EOF as a code block (fail gracefully)."
+        }
+      ]
+    }
+  ]
+}

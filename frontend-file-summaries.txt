@@ -1,0 +1,18 @@
+{
+  "frontend/src/components/Header.tsx": "Header component with navigation controls, blog title display, user authentication status, and callback for game mod navigation using the useIsSuperUser hook.",
+  "frontend/src/components/CommunityCategories.tsx": "Community categories component displaying category navigation buttons with NFT&Game, Crypto Trends, and Community Discussion sections hidden via filtering, and the three visible categories (\"技术分享\", \"人生经历\", \"学习笔记\") using flexbox layout with equal width and even spacing for symmetrical display in Chrome.",
+  "frontend/src/components/NavigationDropdown.tsx": "Navigation dropdown component with user menu items including game mod module that navigates to /game-mod route instead of opening a modal.",
+  "frontend/src/components/LoginButton.tsx": "Login button component that triggers Internet Identity authentication with proper event handler binding and loading state display.",
+  "frontend/src/components/GameDisplayModal.tsx": "Modal component displaying the game display area with placeholder content for future game features, including welcome section, feature preview cards, and smooth close functionality.",
+  "frontend/src/App.tsx": "Main app component with routing and state management, including the new /game-mod/:id route for game detail pages with proper URL parsing and navigation handling.",
+  "frontend/src/components/GameModPage.tsx": "Full page component for the game mod module displaying a responsive 3-column grid of game entries with \"查看详情\" buttons that navigate to individual game detail pages.",
+  "frontend/src/hooks/useGameModQueries.ts": "React Query hooks for game mod operations including fetching all game mods, fetching individual game mod by ID, adding new game mods, and updating existing game mods with backend integration and cache invalidation.",
+  "frontend/src/hooks/useQueries.ts": "Main queries hook that exports all modular query hooks including the new useGameModQueries module.",
+  "frontend/src/components/GameModDetailPage.tsx": "Game mod detail page component that displays comprehensive game information including title, cover image, description, Mod讲解区 section, and clickable external link with responsive layout, dark theme styling, and edit functionality for super users with a dialog form for updating game details.",
+  "frontend/src/utils/markdown.tsx": "Enhanced Markdown parser with fixed multi-line code block rendering, CRLF normalization, support for optional language specifiers, and graceful handling of unterminated code blocks at EOF.",
+  "frontend/src/styles/markdown.css": "Markdown rendering styles with proper multi-line code block display using white-space: pre to preserve line breaks and formatting.",
+  "frontend/src/components/editor/MarkdownToolbar.tsx": "Markdown toolbar component with dedicated buttons for inline code and fenced code blocks, including keyboard shortcuts and visual feedback.",
+  "frontend/src/components/ArticleEditor.tsx": "Article editor component with integrated markdown toolbar, code block insertion functionality via Ctrl+Shift+C shortcut, and proper cursor positioning inside inserted code blocks.",
+  "frontend/src/components/ArticleReader.tsx": "Article reader component that displays full article content with proper markdown rendering including multi-line code blocks, passing articleId as string to child components.",
+  "frontend/src/components/editor/MarkdownPreview.tsx": "Markdown preview component that renders article content in real-time using the shared markdown parser with consistent code block formatting."
+}

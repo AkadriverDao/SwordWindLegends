@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "Code blocks in article content are rendering as a single line, making code hard to read (no proper multi-line display/wrapping)."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-ensure-markdown-fenced-code-blocks-triple-backticks-render-as-true-multi-line-code-blocks-preserve-newlines-and-indentation-in-both-the-article-reader-page-and-the-editor-preview-and-are-not-collapsed-into-a-single-line",
+      "title": "Ensure Markdown fenced code blocks (triple backticks) render as true multi-line code blocks (preserve newlines and indentation) in both the Article reader page and the Editor preview, and are not collapsed into a single line.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-the-article-writing-experience-so-users-can-insert-a-multi-line-fenced-code-block-from-the-editor-toolbar-in-addition-to-inline-code-without-having-to-manually-type-triple-backticks",
+      "title": "Improve the article writing experience so users can insert a multi-line fenced code block from the editor toolbar (in addition to inline code), without having to manually type triple backticks.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-harden-markdown-code-block-parsing-so-fenced-code-blocks-are-recognized-reliably-including-windows-newlines-and-optional-language-specifiers-like-js-and-still-render-correctly-even-if-the-final-closing-backticks-are-missing-fail-gracefully",
+      "title": "Harden Markdown code block parsing so fenced code blocks are recognized reliably (including Windows newlines and optional language specifiers like ```js) and still render correctly even if the final closing backticks are missing (fail gracefully).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Fix article editor/viewer code blocks so they can display multi-line code properly (not forced into a single line) and improve readability",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Fix multi-line Markdown code block editing and rendering in articles",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

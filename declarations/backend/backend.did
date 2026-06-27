@@ -1,0 +1,150 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = record {name: text;};
+type UserApprovalInfo = 
+ record {
+   "principal": principal;
+   status: ApprovalStatus;
+ };
+type TradingPair = 
+ record {
+   coinId: text;
+   enabled: bool;
+   symbol: text;
+ };
+type Time = int;
+type PlayerStatus = 
+ variant {
+   alive;
+   dead;
+ };
+type MiningResult = 
+ variant {
+   death;
+   gold: nat;
+   nothing;
+ };
+type MiningLeaderboardEntry = 
+ record {
+   gold: nat;
+   "principal": principal;
+ };
+type MiningHistory = 
+ record {
+   landId: nat;
+   result: MiningResult;
+   timestamp: Time;
+ };
+type Land = 
+ record {
+   id: nat;
+   x: nat;
+   y: nat;
+ };
+type FileReference = 
+ record {
+   hash: text;
+   path: text;
+ };
+type Comment = 
+ record {
+   articleId: nat;
+   author: principal;
+   commentId: nat;
+   content: text;
+   createdAt: Time;
+ };
+type Article = 
+ record {
+   approvalStatus: int;
+   author: principal;
+   categories: vec text;
+   content: text;
+   createdAt: Time;
+   likeCount: nat;
+   submittedForReview: bool;
+   title: text;
+   updatedAt: Time;
+ };
+type ApprovalStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+service : {
+  addComment: (articleId: nat, content: text) -> (nat);
+  addTradingPair: (symbol: text, coinId: text, enabled: bool) -> ();
+  approveArticle: (articleId: nat) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createArticle: (title: text, content: text, submittedForReview: bool,
+   categories: vec text) -> (nat);
+  deleteArticle: (articleId: nat) -> ();
+  deleteComment: (commentId: nat) -> ();
+  deleteTradingPair: (symbol: text) -> ();
+  dropFileReference: (path: text) -> ();
+  getAllArticles: () -> (vec record {
+                               nat;
+                               Article;
+                             }) query;
+  getAllLands: () -> (vec Land) query;
+  getAllTradingPairs: () -> (vec record {
+                                   text;
+                                   TradingPair;
+                                 }) query;
+  getArticle: (articleId: nat) -> (opt Article) query;
+  getArticleLikeCount: (articleId: nat) -> (nat) query;
+  getArticlesByAuthor: (author: principal) ->
+   (vec record {
+          nat;
+          Article;
+        }) query;
+  getArticlesByCategory: (category: text) ->
+   (vec record {
+          nat;
+          Article;
+        }) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCommentsForArticle: (articleId: nat) -> (vec Comment) query;
+  getFileReference: (path: text) -> (FileReference) query;
+  getLand: (landId: nat) -> (opt Land) query;
+  getLogEnabled: () -> (bool) query;
+  getMiningHistory: () -> (vec MiningHistory) query;
+  getMiningLeaderboard: () -> (vec MiningLeaderboardEntry) query;
+  getMiningProbability: () -> (nat, nat) query;
+  getPlayerGold: () -> (nat) query;
+  getPlayerStatus: () -> (PlayerStatus) query;
+  getTokenBalance: () -> (nat) query;
+  getTotalGoldMined: () -> (nat) query;
+  getTotalMiningOperations: () -> (nat) query;
+  getTotalPlayers: () -> (nat) query;
+  getTradingPair: (symbol: text) -> (opt TradingPair) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  hasLikedArticle: (articleId: nat) -> (bool) query;
+  initializeAccessControl: () -> ();
+  initializeLands: () -> ();
+  isCallerAdmin: () -> (bool) query;
+  isCallerApproved: () -> (bool) query;
+  likeArticle: (articleId: nat) -> ();
+  listApprovals: () -> (vec UserApprovalInfo) query;
+  listFileReferences: () -> (vec FileReference) query;
+  mineLand: (landId: nat) -> (MiningResult);
+  registerFileReference: (path: text, hash: text) -> ();
+  rejectArticle: (articleId: nat) -> ();
+  requestApproval: () -> ();
+  revive: () -> ();
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  setApproval: (user: principal, status: ApprovalStatus) -> ();
+  setLogEnabled: (enabled: bool) -> ();
+  setMiningProbability: (goldProb: nat, deathProb: nat) -> ();
+  transferTokens: (to: principal, amount: nat) -> ();
+  unlikeArticle: (articleId: nat) -> ();
+  updateArticle: (articleId: nat, title: text, content: text,
+   submittedForReview: bool, categories: vec text) -> ();
+  updateTradingPair: (symbol: text, enabled: bool) -> ();
+}

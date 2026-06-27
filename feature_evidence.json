@@ -1,0 +1,72 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-ensure-markdown-fenced-code-blocks-triple-backticks-render-as-true-multi-line-code-blocks-preserve-newlines-and-indentation-in-both-the-article-reader-page-and-the-editor-preview-and-are-not-collapsed-into-a-single-line",
+      "featureTitle": "Ensure Markdown fenced code blocks (triple backticks) render as true multi-line code blocks (preserve newlines and indentation) in both the Article reader page and the Editor preview, and are not collapsed into a single line.",
+      "files": [
+        "frontend/src/components/ArticleReader.tsx",
+        "frontend/src/components/editor/MarkdownPreview.tsx",
+        "frontend/src/styles/markdown.css",
+        "frontend/src/utils/markdown.tsx"
+      ],
+      "components": [
+        "authorization@1.0.1",
+        "blob-storage@1.1.2",
+        "user-approval@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-improve-the-article-writing-experience-so-users-can-insert-a-multi-line-fenced-code-block-from-the-editor-toolbar-in-addition-to-inline-code-without-having-to-manually-type-triple-backticks",
+      "featureTitle": "Improve the article writing experience so users can insert a multi-line fenced code block from the editor toolbar (in addition to inline code), without having to manually type triple backticks.",
+      "files": [
+        "frontend/src/components/ArticleEditor.tsx",
+        "frontend/src/components/editor/MarkdownToolbar.tsx"
+      ],
+      "components": [
+        "authorization@1.0.1",
+        "blob-storage@1.1.2",
+        "user-approval@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-harden-markdown-code-block-parsing-so-fenced-code-blocks-are-recognized-reliably-including-windows-newlines-and-optional-language-specifiers-like-js-and-still-render-correctly-even-if-the-final-closing-backticks-are-missing-fail-gracefully",
+      "featureTitle": "Harden Markdown code block parsing so fenced code blocks are recognized reliably (including Windows newlines and optional language specifiers like ```js) and still render correctly even if the final closing backticks are missing (fail gracefully).",
+      "files": [
+        "frontend/src/utils/markdown.tsx"
+      ],
+      "components": [
+        "authorization@1.0.1",
+        "blob-storage@1.1.2",
+        "user-approval@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

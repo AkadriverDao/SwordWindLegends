@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Source Han Sans CN', 'Noto Sans CJK SC', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    color: #e5e5e5;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  :root {
+    --theme-primary: #6366f1;
+    --theme-secondary: #8b5cf6;
+    --theme-accent: #f59e0b;
+    --theme-font-family: system-ui, -apple-system, sans-serif;
+    --theme-text-size: 16px;
+    --theme-border-radius: 0.75rem;
+  }
+
+  .theme-applied {
+    font-family: var(--theme-font-family);
+    font-size: var(--theme-text-size);
+    position: relative;
+  }
+
+  .theme-applied * {
+    border-radius: var(--theme-border-radius);
+  }
+
+  .theme-applied .rounded-3xl {
+    border-radius: calc(var(--theme-border-radius) * 2);
+  }
+
+  .theme-applied .rounded-2xl {
+    border-radius: calc(var(--theme-border-radius) * 1.5);
+  }
+
+  .theme-applied .rounded-xl {
+    border-radius: var(--theme-border-radius);
+  }
+
+  .theme-applied .rounded-full {
+    border-radius: 9999px;
+  }
+
+  .global-font {
+    font-family: var(--theme-font-family) !important;
+  }
+
+  .theme-applied h1, .theme-applied h2, .theme-applied h3, .theme-applied h4, .theme-applied h5, .theme-applied h6,
+  .theme-applied p, .theme-applied span, .theme-applied div, .theme-applied button, .theme-applied input, 
+  .theme-applied textarea, .theme-applied label, .theme-applied a, .theme-applied li, .theme-applied td, 
+  .theme-applied th, .theme-applied select, .theme-applied option {
+    font-family: var(--theme-font-family) !important;
+  }
+
+  .elegant-numbers {
+    font-variant-numeric: proportional-nums;
+    font-feature-settings: "tnum" 0, "pnum" 1;
+    letter-spacing: 0.025em;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    font-family: 'SF Pro Display', 'Helvetica Neue', 'Arial', sans-serif !important;
+  }
+
+  .elegant-numbers.text-2xl, .elegant-numbers.text-xl, .elegant-numbers.text-lg {
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'SF Pro Display', 'Helvetica Neue', 'Arial', sans-serif !important;
+  }
+
+  .elegant-numbers.currency {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace !important;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  #root {
+    position: relative;
+    overflow: visible;
+  }
+
+  .min-h-screen {
+    overflow: visible;
+  }
+}
+
