@@ -1,0 +1,156 @@
+/* =============================================================================
+   Component-specific styles for modular architecture
+   -----------------------------------------------------------------------------
+   Consumes --dark-* and --gray-* CSS variables defined in index.css (the
+   single source of truth). Previously these referenced undefined variables;
+   they now resolve correctly. The .reply-form background was fixed from an
+   invalid `rgba(var(--dark-surface), 0.5)` (hex value passed to rgba channel
+   syntax) to a proper color-mix() against the --dark-surface token.
+   ========================================================================== */
+
+/* ---- Article Editor Components ---- */
+.editor-header {
+  background: linear-gradient(135deg, var(--dark-surface), var(--dark-muted));
+  border-bottom: 4px solid var(--gray-500);
+}
+
+.editor-form {
+  padding: 2rem;
+}
+
+.editor-toolbar {
+  background: var(--dark-surface);
+  border: 3px solid var(--gray-500);
+  border-bottom: none;
+  border-radius: 1rem 1rem 0 0;
+  padding: 0.75rem;
+}
+
+.editor-preview {
+  border: 3px solid var(--gray-500);
+  border-radius: 1rem;
+  background: var(--dark-card);
+  padding: 1.5rem;
+  min-height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* ---- Management System Components ---- */
+.management-header {
+  background: linear-gradient(135deg, var(--dark-surface), var(--dark-muted));
+  border-bottom: 4px solid var(--gray-500);
+}
+
+.management-tabs {
+  background: var(--dark-surface);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  border: 3px solid var(--gray-500);
+}
+
+.management-content {
+  padding: 2rem;
+}
+
+/* ---- Trading Pair Manager ---- */
+.trading-pair-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.trading-pair-header {
+  background: linear-gradient(135deg, var(--dark-surface), var(--dark-muted));
+  border-bottom: 2px solid var(--gray-500);
+  padding: 1rem;
+}
+
+.trading-pair-row {
+  padding: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.trading-pair-row:hover {
+  background-color: rgba(102, 102, 102, 0.5);
+}
+
+/* ---- Article Manager ---- */
+.article-manager-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.article-manager-instructions {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.2),
+    rgba(139, 92, 246, 0.2)
+  );
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 3px solid var(--gray-500);
+}
+
+/* ---- Comment Components ---- */
+.comment-item {
+  background: var(--dark-surface);
+  border-radius: 1rem;
+  border: 2px solid var(--gray-500);
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form {
+  background: var(--dark-surface);
+  border-radius: 1rem;
+  border: 3px solid var(--gray-500);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.reply-form {
+  margin-top: 1rem;
+  /* color-mix against the --dark-surface token (was invalid rgba(hex, 0.5)) */
+  background: color-mix(in srgb, var(--dark-surface) 50%, transparent);
+  border-radius: 0.75rem;
+  border: 2px solid var(--gray-500);
+  padding: 1rem;
+}
+
+/* ---- Responsive adjustments for components ---- */
+@media (max-width: 640px) {
+  .editor-form {
+    padding: 1rem;
+  }
+
+  .management-content {
+    padding: 1rem;
+  }
+
+  .trading-pair-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .trading-pair-header {
+    display: none;
+  }
+
+  .article-manager-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .comment-item {
+    padding: 0.75rem;
+  }
+
+  .comment-form {
+    padding: 1rem;
+  }
+}

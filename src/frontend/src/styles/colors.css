@@ -1,0 +1,149 @@
+@layer utilities {
+  /* =============================================================================
+     Dark Theme Color Palette — dark-* hex utilities
+     -----------------------------------------------------------------------------
+     Canonical dark palette as Tailwind-style utilities. These mirror the
+     --dark-* CSS variables defined in index.css (the single source of truth
+     for token values). New components should prefer the semantic var() tokens
+     (bg-surface, text-secondary-text, border-token, etc.) defined in index.css;
+     these utilities remain for backward compatibility with existing markup.
+
+     NOTE: The Tailwind gray-50..900 overrides that previously lived here have
+     been removed — they clobbered shadcn/ui's neutral ramp and broke component
+     contrast. Components that need a gray ramp should use the --gray-* CSS
+     variables from index.css (which are aligned with the dark neutral ramp)
+     or shadcn's default muted/foreground tokens.
+     ========================================================================== */
+
+  /* ---- text-dark-* ---- */
+  .text-dark-bg {
+    color: #0f0f0f;
+  }
+  .text-dark-surface {
+    color: #1a1a1a;
+  }
+  .text-dark-card {
+    color: #2d2d2d;
+  }
+  .text-dark-muted {
+    color: #404040;
+  }
+  .text-dark-border {
+    color: #525252;
+  }
+  .text-dark-hover {
+    color: #666666;
+  }
+  .text-dark-text-secondary {
+    color: #a3a3a3;
+  }
+  .text-dark-text {
+    color: #e5e5e5;
+  }
+  .text-dark-primary {
+    color: #6366f1;
+  }
+  .text-dark-secondary {
+    color: #8b5cf6;
+  }
+  .text-dark-accent {
+    color: #f59e0b;
+  }
+  .text-dark-success {
+    color: #10b981;
+  }
+  .text-dark-warning {
+    color: #f59e0b;
+  }
+  .text-dark-error {
+    color: #ef4444;
+  }
+
+  /* ---- bg-dark-* ---- */
+  .bg-dark-bg {
+    background-color: #0f0f0f;
+  }
+  .bg-dark-surface {
+    background-color: #1a1a1a;
+  }
+  .bg-dark-card {
+    background-color: #2d2d2d;
+  }
+  .bg-dark-muted {
+    background-color: #404040;
+  }
+  .bg-dark-border {
+    background-color: #525252;
+  }
+  .bg-dark-hover {
+    background-color: #666666;
+  }
+  .bg-dark-text-secondary {
+    background-color: #a3a3a3;
+  }
+  .bg-dark-text {
+    background-color: #e5e5e5;
+  }
+  .bg-dark-primary {
+    background-color: #6366f1;
+  }
+  .bg-dark-secondary {
+    background-color: #8b5cf6;
+  }
+  .bg-dark-accent {
+    background-color: #f59e0b;
+  }
+  .bg-dark-success {
+    background-color: #10b981;
+  }
+  .bg-dark-warning {
+    background-color: #f59e0b;
+  }
+  .bg-dark-error {
+    background-color: #ef4444;
+  }
+
+  /* ---- border-dark-* ---- */
+  .border-dark-bg {
+    border-color: #0f0f0f;
+  }
+  .border-dark-surface {
+    border-color: #1a1a1a;
+  }
+  .border-dark-card {
+    border-color: #2d2d2d;
+  }
+  .border-dark-muted {
+    border-color: #404040;
+  }
+  .border-dark-border {
+    border-color: #525252;
+  }
+  .border-dark-hover {
+    border-color: #666666;
+  }
+  .border-dark-text-secondary {
+    border-color: #a3a3a3;
+  }
+  .border-dark-text {
+    border-color: #e5e5e5;
+  }
+  .border-dark-primary {
+    border-color: #6366f1;
+  }
+  .border-dark-secondary {
+    border-color: #8b5cf6;
+  }
+  .border-dark-accent {
+    border-color: #f59e0b;
+  }
+  .border-dark-success {
+    border-color: #10b981;
+  }
+  .border-dark-warning {
+    border-color: #f59e0b;
+  }
+  .border-dark-error {
+    border-color: #ef4444;
+  }
+}

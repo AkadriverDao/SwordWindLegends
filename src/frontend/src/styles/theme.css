@@ -1,0 +1,132 @@
+@layer utilities {
+  /* =============================================================================
+     Theme-aware utilities + z-index scale + background presets
+     -----------------------------------------------------------------------------
+     z-index utilities here are the SINGLE source for the .z-modal / .z-dropdown
+     / .z-backdrop / .z-overlay classes. They reference the canonical --z-*
+     tokens defined in index.css. layout.css and navigation.css no longer
+     redefine these — they were triple-duplicated before.
+     ========================================================================== */
+
+  /* ---- Theme-aware colors (driven by --theme-* set by ThemeProvider) ---- */
+  .bg-theme-primary {
+    background-color: var(--theme-primary);
+  }
+  .bg-theme-secondary {
+    background-color: var(--theme-secondary);
+  }
+  .bg-theme-accent {
+    background-color: var(--theme-accent);
+  }
+  .text-theme-primary {
+    color: var(--theme-primary);
+  }
+  .text-theme-secondary {
+    color: var(--theme-secondary);
+  }
+  .text-theme-accent {
+    color: var(--theme-accent);
+  }
+  .border-theme-primary {
+    border-color: var(--theme-primary);
+  }
+  .border-theme-secondary {
+    border-color: var(--theme-secondary);
+  }
+  .border-theme-accent {
+    border-color: var(--theme-accent);
+  }
+
+  .hover\:bg-theme-primary\/80:hover {
+    background-color: color-mix(in srgb, var(--theme-primary) 80%, transparent);
+  }
+  .hover\:bg-theme-secondary\/80:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--theme-secondary) 80%,
+      transparent
+    );
+  }
+  .hover\:bg-theme-accent\/80:hover {
+    background-color: color-mix(in srgb, var(--theme-accent) 80%, transparent);
+  }
+  .hover\:text-theme-primary\/80:hover {
+    color: color-mix(in srgb, var(--theme-primary) 80%, transparent);
+  }
+
+  /* ---- Background style presets (4) ---- */
+  .bg-gradient {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  }
+  .bg-solid {
+    background: #1a1a1a;
+  }
+  .bg-pattern {
+    background: #1a1a1a;
+    background-image: radial-gradient(
+        circle at 25% 25%,
+        #2d2d2d 2px,
+        transparent 2px
+      ), radial-gradient(circle at 75% 75%, #2d2d2d 2px, transparent 2px);
+    background-size: 50px 50px;
+  }
+  .bg-starry {
+    background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+    background-image: radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+      radial-gradient(
+        2px 2px at 40px 70px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ), radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+      radial-gradient(
+        1px 1px at 130px 80px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ), radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+  }
+
+  /* ---- Custom border widths ---- */
+  .border-3 {
+    border-width: 3px;
+  }
+  .border-4 {
+    border-width: 4px;
+  }
+
+  /* ---- z-index utilities (canonical; reference --z-* tokens from index.css) ---- */
+  .z-modal {
+    z-index: var(--z-modal);
+  }
+  .z-dropdown {
+    z-index: var(--z-dropdown);
+  }
+  .z-backdrop {
+    z-index: var(--z-backdrop);
+  }
+  .z-overlay {
+    z-index: var(--z-overlay);
+  }
+
+  /* ---- Dropdown portal helpers (reference --z-* tokens) ---- */
+  .dropdown-portal {
+    position: fixed !important;
+    z-index: var(--z-modal) !important;
+    pointer-events: auto !important;
+  }
+  .dropdown-content {
+    position: relative !important;
+    z-index: var(--z-modal) !important;
+    pointer-events: auto !important;
+  }
+  .dropdown-backdrop {
+    position: fixed !important;
+    z-index: var(--z-dropdown) !important;
+    pointer-events: auto !important;
+  }
+  .dropdown-safe-container {
+    overflow: visible !important;
+    position: relative !important;
+  }
+}

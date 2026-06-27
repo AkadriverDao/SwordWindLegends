@@ -1,0 +1,34 @@
+/* =============================================================================
+   Navigation — nav-header / nav-title / nav-logo / nav-dropdown-trigger
+   responsive adjustments ONLY
+   -----------------------------------------------------------------------------
+   The .mobile-dropdown / .mobile-dropdown-backdrop / .mobile-nav-item /
+   .mobile-nav-icon rules previously duplicated here have been removed. The
+   single source for those mobile navigation helpers is now mobile.css. The
+   .dropdown-portal / .dropdown-content / .dropdown-backdrop /
+   .dropdown-safe-container rules previously duplicated here have also been
+   removed; the single source is theme.css. This file keeps only the
+   nav-header/title/logo/dropdown-trigger responsive overrides, which are
+   unique to this file.
+   ========================================================================== */
+@layer utilities {
+  /* ---- Navigation responsive adjustments ---- */
+  @media (max-width: 640px) {
+    .nav-header {
+      padding: 0.75rem 1rem;
+    }
+
+    .nav-title {
+      font-size: 1.125rem;
+    }
+
+    .nav-logo {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .nav-dropdown-trigger {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+@layer utilities {
+  /* =============================================================================
+     Mobile (<=640px) touch + bottom-sheet + form + nav + container helpers
+     -----------------------------------------------------------------------------
+     SINGLE source for:
+       - touch-target sizing (44px min hit areas)
+       - .mobile-dropdown / .mobile-dropdown-backdrop (bottom-sheet positioning)
+       - .mobile-form-input / .mobile-form-textarea / .mobile-form-button
+       - .mobile-nav-item / .mobile-nav-icon
+       - .mobile-chart-container / .mobile-chart-canvas
+       - .mobile-container / .mobile-no-scroll / body-overflow guards
+     Previously duplicated across mobile.css, navigation.css, forms.css,
+     charts.css, and layout.css. Those files no longer redefine these rules.
+     ========================================================================== */
+
+  @media (max-width: 640px) {
+    /* ---- Touch-friendly sizing ---- */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .touch-button {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      min-height: 44px;
+    }
+    .touch-icon-button {
+      padding: 0.75rem;
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    button {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    input,
+    textarea,
+    select {
+      min-height: 44px;
+      padding: 0.75rem;
+    }
+    a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* ---- Bottom-sheet dropdown ---- */
+    .mobile-dropdown {
+      position: fixed !important;
+      top: auto !important;
+      bottom: 1rem !important;
+      left: 1rem !important;
+      right: 1rem !important;
+      width: auto !important;
+      max-width: none !important;
+      transform: none !important;
+      max-height: 70vh !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    .mobile-dropdown-backdrop {
+      position: fixed !important;
+      inset: 0 !important;
+      background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* ---- Modal ---- */
+    .mobile-modal {
+      margin: 1rem !important;
+      max-width: calc(100vw - 2rem) !important;
+      max-height: calc(100vh - 2rem) !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* ---- Chart ---- */
+    .mobile-chart-container {
+      width: 100% !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    .mobile-chart-canvas {
+      min-width: 320px !important;
+      width: 100% !important;
+      height: 300px !important;
+    }
+
+    /* ---- Form controls ---- */
+    .mobile-form-input {
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+      min-height: 44px !important;
+    }
+    .mobile-form-textarea {
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+      min-height: 120px !important;
+    }
+    .mobile-form-button {
+      padding: 0.75rem 1.5rem !important;
+      font-size: 1rem !important;
+      min-height: 44px !important;
+    }
+
+    /* ---- Navigation ---- */
+    .mobile-nav-item {
+      padding: 1rem !important;
+      font-size: 1rem !important;
+      min-height: 56px !important;
+    }
+    .mobile-nav-icon {
+      width: 24px !important;
+      height: 24px !important;
+    }
+
+    /* ---- Container + overflow guards ---- */
+    .mobile-no-scroll {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    .mobile-container {
+      width: 100% !important;
+      max-width: 100vw !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    body {
+      overflow-x: hidden !important;
+    }
+    #root {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    .min-h-screen {
+      overflow-x: hidden !important;
+    }
+  }
+}

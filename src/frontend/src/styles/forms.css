@@ -1,0 +1,90 @@
+/* =============================================================================
+   Form & input styles — custom range slider thumbs/tracks ONLY
+   -----------------------------------------------------------------------------
+   The .mobile-form-input / .mobile-form-textarea / .mobile-form-button rules
+   previously duplicated here have been removed. The single source for those
+   mobile form-control helpers is now mobile.css. This file keeps only the
+   custom slider thumb/track styling (gold / death / nothing variants), which
+   is unique to this file.
+   ========================================================================== */
+@layer utilities {
+  /* ---- Gold slider ---- */
+  .slider-gold::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    cursor: pointer;
+    border: 2px solid #d97706;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+  .slider-gold::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    cursor: pointer;
+    border: 2px solid #d97706;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+
+  /* ---- Death slider ---- */
+  .slider-death::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    cursor: pointer;
+    border: 2px solid #b91c1c;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+  }
+  .slider-death::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    cursor: pointer;
+    border: 2px solid #b91c1c;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+  }
+
+  /* ---- Nothing slider ---- */
+  .slider-nothing::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    cursor: pointer;
+    border: 2px solid #374151;
+    box-shadow: 0 0 10px rgba(107, 114, 128, 0.5);
+  }
+  .slider-nothing::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    cursor: pointer;
+    border: 2px solid #374151;
+    box-shadow: 0 0 10px rgba(107, 114, 128, 0.5);
+  }
+
+  /* ---- Slider tracks ---- */
+  .slider-gold::-webkit-slider-track {
+    background: linear-gradient(90deg, #374151, #fbbf24);
+    height: 8px;
+    border-radius: 4px;
+  }
+  .slider-death::-webkit-slider-track {
+    background: linear-gradient(90deg, #374151, #ef4444);
+    height: 8px;
+    border-radius: 4px;
+  }
+  .slider-nothing::-webkit-slider-track {
+    background: linear-gradient(90deg, #374151, #6b7280);
+    height: 8px;
+    border-radius: 4px;
+  }
+}

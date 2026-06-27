@@ -1,0 +1,18 @@
+/* =============================================================================
+   Layout — intentionally minimal
+   -----------------------------------------------------------------------------
+   This file previously duplicated z-index utilities, mobile padding/text-scale
+   rules, max-width overrides, grid collapse, and body/#root overflow guards
+   that were already defined elsewhere. All of those duplicates have been
+   removed. The single sources are now:
+     - z-index utilities        → theme.css (references --z-* tokens in index.css)
+     - mobile/tablet padding,
+       text scale, max-width,
+       grid collapse           → responsive.css
+     - mobile-container /
+       mobile-no-scroll /
+       body/#root overflow     → mobile.css
+   layout.css is kept as an empty placeholder so the @import in index.css
+   remains valid; future layout-specific rules that don't fit elsewhere can be
+   added here.
+   ========================================================================== */

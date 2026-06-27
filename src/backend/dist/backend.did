@@ -1,0 +1,172 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   email: opt text;
+   name: text;
+ };
+type UserApprovalInfo = 
+ record {
+   "principal": principal;
+   status: ApprovalStatus;
+ };
+type Time = int;
+type Result = 
+ variant {
+   err: Error;
+   ok;
+ };
+type FileReference = 
+ record {
+   hash: text;
+   path: text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Comment = 
+ record {
+   articleId: nat;
+   author: principal;
+   commentId: nat;
+   content: text;
+   createdAt: Time;
+ };
+type Article = 
+ record {
+   author: principal;
+   categories: vec text;
+   content: text;
+   createdAt: Time;
+   hideReason: text;
+   likeCount: nat;
+   pinOrder: nat;
+   pinned: bool;
+   title: text;
+   updatedAt: Time;
+   visible: bool;
+ };
+type ApprovalStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+service : {
+  __accessControlState: () -> (reserved) query;
+  __approvalState: () -> (reserved) query;
+  __articleLikes: () -> (reserved) query;
+  __articles: (ko: opt nat, count: opt nat) ->
+   (vec record {
+          nat;
+          Article;
+        }) query;
+  __comments: (ko: opt nat, count: opt nat) ->
+   (vec record {
+          nat;
+          Comment;
+        }) query;
+  __ledgerState: () -> (reserved) query;
+  __nextArticleId: () -> (nat) query;
+  __nextCommentId: () -> (nat) query;
+  __nextPinOrder: () -> (nat) query;
+  __registry: () -> (reserved) query;
+  __userProfiles: (ko: opt principal, count: opt nat) ->
+   (vec record {
+          principal;
+          UserProfile;
+        }) query;
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result);
+  _internet_identity_sign_in_start: () -> (blob);
+  addComment: (articleId: nat, content: text) -> (nat);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createArticle: (title: text, content: text, categories: vec text) -> (nat);
+  deleteArticle: (articleId: nat) -> ();
+  deleteComment: (commentId: nat) -> ();
+  dropFileReference: (path: text) -> ();
+  getAllArticles: () -> (vec record {
+                               nat;
+                               Article;
+                             }) query;
+  getArticle: (articleId: nat) -> (opt Article) query;
+  getArticleLikeCount: (articleId: nat) -> (nat) query;
+  getArticlesByAuthor: (author: principal) ->
+   (vec record {
+          nat;
+          Article;
+        }) query;
+  getArticlesByCategory: (category: text) ->
+   (vec record {
+          nat;
+          Article;
+        }) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCommentsForArticle: (articleId: nat) -> (vec Comment) query;
+  getFileReference: (path: text) -> (opt FileReference) query;
+  getTokenBalance: () -> (nat) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  hasLikedArticle: (articleId: nat) -> (bool) query;
+  initializeAccessControl: () -> ();
+  isCallerAdmin: () -> (bool) query;
+  isCallerApproved: () -> (bool) query;
+  likeArticle: (articleId: nat) -> ();
+  listApprovals: () -> (vec UserApprovalInfo) query;
+  listFileReferences: () -> (vec FileReference) query;
+  registerFileReference: (path: text, hash: text) -> ();
+  requestApproval: () -> ();
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  setApproval: (user: principal, status: ApprovalStatus) -> ();
+  setArticlePinned: (articleId: nat, pinned: bool) -> ();
+  setArticleVisible: (articleId: nat, visible: bool, hideReason: text) -> ();
+  transferTokens: (to: principal, amount: nat) -> ();
+  unlikeArticle: (articleId: nat) -> ();
+  updateArticle: (articleId: nat, title: text, content: text, categories:
+   vec text) -> ();
+}

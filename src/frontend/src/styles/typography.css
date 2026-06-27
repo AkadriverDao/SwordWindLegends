@@ -1,0 +1,75 @@
+/* =============================================================================
+   Typography — global heading weights, prose styles, mobile-text-* utilities
+   -----------------------------------------------------------------------------
+   Mobile text-scale overrides (text-4xl..text-xs at <=640px) previously
+   duplicated here have been removed. The single source for responsive text
+   scaling is now responsive.css. This file keeps only:
+     - global heading defaults
+     - prose (article reading) styles
+     - .mobile-text-* explicit size utilities (non-responsive, opt-in)
+   ========================================================================== */
+@layer utilities {
+  /* ---- Global heading defaults ---- */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    letter-spacing: 0.025em;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  /* ---- Prose styles for article reading ---- */
+  .prose {
+    max-width: none;
+  }
+
+  .prose p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 700;
+  }
+
+  .prose h1 {
+    font-size: 2.5em;
+    line-height: 1.2;
+  }
+  .prose h2 {
+    font-size: 2em;
+    line-height: 1.3;
+  }
+  .prose h3 {
+    font-size: 1.5em;
+    line-height: 1.4;
+  }
+
+  /* ---- Explicit mobile-text-* size utilities (opt-in, not media-gated) ---- */
+  .mobile-text-lg {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+  .mobile-text-base {
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+  }
+  .mobile-text-sm {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .mobile-text-xs {
+    font-size: 0.6875rem;
+    line-height: 0.875rem;
+  }
+}
